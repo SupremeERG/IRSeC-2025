@@ -8,9 +8,9 @@ set -euo pipefail
 
 # Configuration
 LOG_FILE="/var/log/blue_team_defense.log"
-REPORT_FILE="/var/log/blue_team_report_$(date +%Y%m%d_H%M%S).txt"
+REPORT_FILE="/var/log/blue_team_report_$(date +%Y%m%d_%H%M%S).txt"
 RED_INDICATORS=("redteam" "red_team" "red-team" "red team")
-EXCLUDE_DIRS=("/proc" "/sys" "/dev" "/run" "/boot" "/lib" "/lib64")
+EXCLUDE_DIRS=("/proc" "/sys" "/dev" "/run" "/boot" "/lib" "/lib64" "/usr/share" "/var/cache")
 
 # Colors for output
 RED='\033[0;31m'

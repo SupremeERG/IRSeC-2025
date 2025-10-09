@@ -1,4 +1,4 @@
-i#!/bin/bash
+#!/bin/bash
 
 # Blue Team Defense - File Scanner
 # @author Ryan
@@ -13,35 +13,69 @@ scan_files() {
     
     echo "=== SUSPICIOUS FILES ===" >> "$REPORT_FILE"
     
-    while IFS= read -r -d '' file; do
-        ((scan_count++))
-        
-        if should_exclude "$(dirname "$file")"; then
+    # Define important directories to scan (common attack targets)
+    local important_dirs=(
+        "/home"
+        "/root"
+        "/tmp"
+        "/var/tmp"
+        "/etc"
+        "/opt"
+        "/usr/local"
+        "/var/www"
+        "/var/log"
+        "/var/spool"
+        "/dev/shm"
+        "/run/user"
+        "$(pwd)"
+    )
+    
+    # Add current user's home directory if not already included
+    local user_home="$HOME"
+    if [[ ! " ${important_dirs[@]} " =~ " ${user_home} " ]]; then
+        important_dirs+=("$user_home")
+    fi
+    
+    log "Scanning important directories: ${important_dirs[*]}"
+    
+    for dir in "${important_dirs[@]}"; do
+        if [[ ! -d "$dir" ]]; then
             continue
         fi
         
-        local filename=$(basename "$file")
-        local lower_filename=$(echo "$filename" | tr '[:upper:]' '[:lower:]')
+        log "Scanning directory: $dir"
+        echo -e "\n${YELLOW}Scanning: $dir${NC}"
         
-        for indicator in "${RED_INDICATORS[@]}"; do
-            if [[ "$lower_filename" == *"$indicator"* ]]; then
-                found_files+=("$file")
-                log "SUSPICIOUS FILE FOUND: $file"
-                echo "FILE: $file" >> "$REPORT_FILE"
-                echo "  Size: $(ls -lh "$file" 2>/dev/null | awk '{print $5}' || echo 'unknown')" >> "$REPORT_FILE"
-                echo "  Permissions: $(ls -ld "$file" 2>/dev/null | awk '{print $1}' || echo 'unknown')" >> "$REPORT_FILE"
-                echo "  Owner: $(ls -ld "$file" 2>/dev/null | awk '{print $3}' || echo 'unknown')" >> "$REPORT_FILE"
-                echo "  Modified: $(ls -ld "$file" 2>/dev/null | awk '{print $6, $7, $8}' || echo 'unknown')" >> "$REPORT_FILE"
-                echo "" >> "$REPORT_FILE"
-                break
+        while IFS= read -r -d '' file; do
+            ((scan_count++))
+            
+            if should_exclude "$(dirname "$file")"; then
+                continue
             fi
-        done
-        
-        # Progress indicator for large scans
-        if (( scan_count % 1000 == 0 )); then
-            echo -ne "Scanned $scan_count files... Found ${#found_files[@]} suspicious\r"
-        fi
-    done < <(find / -type f -print0 2>/dev/null || true)
+            
+            local filename=$(basename "$file")
+            local lower_filename=$(echo "$filename" | tr '[:upper:]' '[:lower:]')
+            
+            for indicator in "${RED_INDICATORS[@]}"; do
+                if [[ "$lower_filename" == *"$indicator"* ]]; then
+                    found_files+=("$file")
+                    log "SUSPICIOUS FILE FOUND: $file"
+                    echo "FILE: $file" >> "$REPORT_FILE"
+                    echo "  Size: $(ls -lh "$file" 2>/dev/null | awk '{print $5}' || echo 'unknown')" >> "$REPORT_FILE"
+                    echo "  Permissions: $(ls -ld "$file" 2>/dev/null | awk '{print $1}' || echo 'unknown')" >> "$REPORT_FILE"
+                    echo "  Owner: $(ls -ld "$file" 2>/dev/null | awk '{print $3}' || echo 'unknown')" >> "$REPORT_FILE"
+                    echo "  Modified: $(ls -ld "$file" 2>/dev/null | awk '{print $6, $7, $8}' || echo 'unknown')" >> "$REPORT_FILE"
+                    echo "" >> "$REPORT_FILE"
+                    break
+                fi
+            done
+            
+            # Progress indicator for large scans
+            if (( scan_count % 500 == 0 )); then
+                echo -ne "Scanned $scan_count files... Found ${#found_files[@]} suspicious\r"
+            fi
+        done < <(find "$dir" -type f -print0 2>/dev/null || true)
+    done
     
     echo -e "\nFile scan completed: ${#found_files[@]} suspicious files found"
     log "File scan completed: ${#found_files[@]} suspicious files found out of $scan_count scanned"
@@ -53,6 +87,7 @@ main() {
     log "Starting file scanning mode"
     echo -e "${YELLOW}=== FILE SCANNING MODE ===${NC}"
     echo -e "${GREEN}This will scan for suspicious files but NOT remove them${NC}"
+    echo -e "${YELLOW}Scanning important directories only (not entire filesystem)${NC}"
     
     file_count=$(scan_files)
     

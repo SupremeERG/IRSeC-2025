@@ -29,7 +29,7 @@ scan_processes() {
                 break
             fi
         done
-    done < <(ps -eo pid,user,args | awk 'NR>1 {print $1, $2, $3}')
+    done < <(ps -eo pid,user,args --no-headers | awk '{print $1, $2, substr($0, index($0,$3))}')
     
     echo "Process scan completed: ${#found_processes[@]} suspicious processes found"
     log "Process scan completed: ${#found_processes[@]} suspicious processes found"

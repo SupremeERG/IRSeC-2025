@@ -1,3 +1,6 @@
+# @author jian
+# resets the passwords of all authorized users to "P@ssw0rd123!"
+
 # Define the list of authorized users
 $authorizedUsers = @("Administrator", "Guest", "krbtgt", "jians", "jsmith")
 

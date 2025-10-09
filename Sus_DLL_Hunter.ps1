@@ -1,6 +1,9 @@
 # Looks for suspicious DDLs
+# @author jian
 # Criteria for suspicion
 # In one of the following paths and (modified within 7 days or not owned by SYSTEM or TrustedInstaller)
+# This ONLY prints sus DLLs, it DOES NOT delete them. The user should manually
+# check each flagged DLL and only delete them if they are malicious
 $searchPaths = @(
     "$env:APPDATA",
     "$env:LOCALAPPDATA",

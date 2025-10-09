@@ -1,3 +1,6 @@
+# @author jian
+# removes all users not in the authorized users list
+
 # Define authorized users
 $authorizedUsers = @("Administrator", "Guest", "krbtgt", "jians", "jsmith")
 

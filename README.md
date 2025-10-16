@@ -7,6 +7,10 @@ These scripts are provided for educational and competitive purposes only. Do not
 
 ## Ansible
 - The Ansible folder contains all information and scripts pertaining to Ansible automation
+
+### General 
+- `inventory/net.yaml` contains the an inventory file for every host on the network
+
 ### Scripts
 - `auth_setup.sh` sets up SSH authentication for Ansible managed nodes
 

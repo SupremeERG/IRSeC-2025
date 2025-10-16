@@ -1,57 +1,54 @@
 #!/bin/bash
 
-# Blue Team Defense - Process Scanner
-# @author Ryan
-# Scans for suspicious running processes
-
-source ./blue_team_config.sh
-
-scan_processes() {
+# Improved version
+improved_scan_processes() {
     log "Starting process scan..."
     local found_processes=()
     
     echo "=== SUSPICIOUS PROCESSES ===" >> "$REPORT_FILE"
     
-    while read -r pid user command; do
+    # Input validation
+    if [[ -z "$REPORT_FILE" || -z "${RED_INDICATORS[@]}" ]]; then
+        log "ERROR: Missing required configuration"
+        return 1
+    fi
+    
+    # Get all process info in single call
+    while IFS= read -r line; do
+        local pid=$(echo "$line" | awk '{print $1}')
+        local user=$(echo "$line" | awk '{print $2}')
+        local command=$(echo "$line" | cut -d' ' -f6-)
         local lower_command=$(echo "$command" | tr '[:upper:]' '[:lower:]')
         
+        # Verify process still exists
+        if ! kill -0 "$pid" 2>/dev/null; then
+            continue
+        fi
+        
         for indicator in "${RED_INDICATORS[@]}"; do
-            if [[ "$lower_command" == *"$indicator"* ]]; then
+            local lower_indicator=$(echo "$indicator" | tr '[:upper:]' '[:lower:]')
+            
+            # Use word boundaries for exact matching
+            if echo "$lower_command" | grep -qw "$lower_indicator"; then
                 found_processes+=("$pid:$command")
                 log "SUSPICIOUS PROCESS FOUND: PID $pid - $command"
-                echo "PROCESS: PID $pid" >> "$REPORT_FILE"
-                echo "  User: $user" >> "$REPORT_FILE"
-                echo "  Command: $command" >> "$REPORT_FILE"
-                echo "  Start Time: $(ps -o lstart= -p $pid 2>/dev/null || echo 'unknown')" >> "$REPORT_FILE"
-                echo "  CPU: $(ps -o %cpu= -p $pid 2>/dev/null || echo 'unknown')%" >> "$REPORT_FILE"
-                echo "  Memory: $(ps -o %mem= -p $pid 2>/dev/null || echo 'unknown')%" >> "$REPORT_FILE"
-                echo "" >> "$REPORT_FILE"
+                
+                # Append to report safely
+                {
+                    echo "PROCESS: PID $pid"
+                    echo "  User: $user"
+                    echo "  Command: $command"
+                    echo "  Start Time: $(ps -o lstart= -p "$pid" 2>/dev/null || echo 'unknown')"
+                    echo "  CPU: $(ps -o %cpu= -p "$pid" 2>/dev/null || echo 'unknown')%"
+                    echo "  Memory: $(ps -o %mem= -p "$pid" 2>/dev/null || echo 'unknown')%"
+                    echo ""
+                } >> "$REPORT_FILE"
                 break
             fi
         done
-    done < <(ps -eo pid,user,args --no-headers | awk '{print $1, $2, substr($0, index($0,$3))}')
+    done < <(ps -eo pid,user,args --no-headers 2>/dev/null | awk '{print $1, $2, substr($0, index($0,$3))}')
     
     echo "Process scan completed: ${#found_processes[@]} suspicious processes found"
     log "Process scan completed: ${#found_processes[@]} suspicious processes found"
     echo "${#found_processes[@]}"
 }
-
-main() {
-    init_logs
-    log "Starting process scanning mode"
-    echo -e "${YELLOW}=== PROCESS SCANNING MODE ===${NC}"
-    
-    process_count=$(scan_processes)
-    
-    echo -e "\n${YELLOW}=== SCAN RESULTS ===${NC}"
-    echo -e "Suspicious processes found: ${RED}$process_count${NC}"
-    echo -e "Detailed report: $REPORT_FILE"
-    
-    if [[ $process_count -eq 0 ]]; then
-        echo -e "\n${GREEN}No suspicious processes detected!${NC}"
-    else
-        echo -e "\n${YELLOW}Investigate these processes before termination.${NC}"
-    fi
-}
-
-main

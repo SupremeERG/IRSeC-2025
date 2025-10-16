@@ -40,3 +40,6 @@ for host in "$@"; do
 done
 
 echo "✅ Done! The SSH key is stored at: $KEY_PATH"
+
+
+echo "[+] Once Ansible is installed, add \"ansible_connection=ssh\" to applicable hosts in inventory file"

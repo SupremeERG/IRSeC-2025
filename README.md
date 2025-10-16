@@ -5,6 +5,11 @@ These scripts are provided for educational and competitive purposes only. Do not
 
 # Directory
 
+## Ansible
+- The Ansible folder contains all information and scripts pertaining to Ansible automation
+### Scripts
+- `auth_setup.sh` sets up SSH authentication for Ansible managed nodes
+
 ## Linux
 - The Linux folder contains all information and scripts pertaining to Linux machines.
 - `linux-cheatsheet.md` contains useful commands
@@ -14,3 +19,6 @@ These scripts are provided for educational and competitive purposes only. Do not
 - `file_scanner.sh` reports (to blue_team_configuration.sh report file) any suspicious files
 - `user_audit.sh` removes any non-default users (asks user to confirm before deleting)
 - `user_scanner.sh` reports (to blue_team_configuration.sh report file) any suspicious users
+
+# Windows
+...

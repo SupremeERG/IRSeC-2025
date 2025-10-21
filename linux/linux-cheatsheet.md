@@ -13,4 +13,6 @@
 
 `tcpdump` - monitor real-time network traffic
 
+`umask` - changes default file permissions (must be added to .profile file to persist)
+
 `killall -u [username]` - kills all processes that are run by [username]

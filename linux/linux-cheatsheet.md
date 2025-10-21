@@ -21,5 +21,11 @@
 Log data is typically kept in `/var` (variable)
 
 - `/var/log/syslog` contains system log data excluding authentication logs
+  
 - `/var/log/auth.log` or `/var/log/secure` contains authentication log data for Debian or Red Hat respectively
+  
+- `/var/log/messages` contains non-critical and non-debug messages, including messages logged during boot-up (dmesg), auth, cron, daemon, etc.
+  
 - `/etc/rsyslog.conf` or `/etc/syslog.conf` contains the main rsyslogd/syslogd configuration. See manual page for rsyslog.conf or https://www.rsyslog.com/doc/
+
+- log file rotation and cleaning can be accomplished with `logrotate`

@@ -29,3 +29,6 @@ Log data is typically kept in `/var` (variable)
 - `/etc/rsyslog.conf` or `/etc/syslog.conf` contains the main rsyslogd/syslogd configuration. See manual page for rsyslog.conf or https://www.rsyslog.com/doc/
 
 - log file rotation and cleaning can be accomplished with `logrotate`
+
+# Services
+- `systemctl list-units --no-pager -all` to show all systemd units

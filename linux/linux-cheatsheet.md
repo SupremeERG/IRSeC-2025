@@ -16,3 +16,9 @@
 `umask` - changes default file permissions (must be added to .profile file to persist)
 
 `killall -u [username]` - kills all processes that are run by [username]
+
+# Logging
+Log data is typically kept in `/var` (variable)
+
+- `/var/log/syslog` contains system log data
+- `/etc/rsyslog.conf` or `/etc/syslog.conf` contains the main rsyslogd/syslogd configuration

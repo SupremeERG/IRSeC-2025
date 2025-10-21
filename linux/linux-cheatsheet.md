@@ -20,5 +20,5 @@
 # Logging
 Log data is typically kept in `/var` (variable)
 
-- `/var/log/syslog` contains system log data
+- `/var/log/syslog` contains system log data excluding authentication logs
 - `/etc/rsyslog.conf` or `/etc/syslog.conf` contains the main rsyslogd/syslogd configuration. See manual page for rsyslog.conf or https://www.rsyslog.com/doc/

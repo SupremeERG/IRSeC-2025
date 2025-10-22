@@ -15,6 +15,10 @@
 
 `umask` - changes default file permissions (must be added to .profile file to persist)
 
+`useradd` - add user
+
+`userdel` - delete user
+
 `killall -u [username]` - kills all processes that are run by [username]
 
 # Logging

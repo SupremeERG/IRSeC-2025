@@ -18,6 +18,7 @@ These scripts are provided for educational and competitive purposes only. Do not
 - The Linux folder contains all information and scripts pertaining to Linux machines.
 - `linux-cheatsheet.md` contains useful commands
 ### Scripts
+**IMPORTANT** - run `export IRSEC_REPO_DIR=<irsec repository location>` if this repository is not cloned at $HOME/IRSeC-2025/ or clone it at the root of root user's home directory 
 - `blue_team_configuration.sh` initializes a bash source configuration and any important and consistently used values as variables for other scripts to use
 - `check_bash_integrity.sh` checks the integrity and vulnerability of the bash shell and any binaries
 - `file_scanner.sh` reports (to blue_team_configuration.sh report file) any suspicious files

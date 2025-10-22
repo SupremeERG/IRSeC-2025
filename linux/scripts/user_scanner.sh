@@ -5,7 +5,7 @@
 # Scans for suspicious user accounts
 
 if [[ -z "${IRSEC_REPO_DIR:-}" ]]; then
-    IRSEC_REPO_DIR=~/IRSeC-2025/
+    IRSEC_REPO_DIR=$HOME/IRSeC-2025/
 fi
 source $IRSEC_REPO_DIR/linux/scripts/blue_team_configuration.sh
 

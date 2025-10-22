@@ -4,7 +4,10 @@
 # @author Ryan
 # Scans for suspicious files but does NOT remove them
 
-source ./blue_team_config.sh
+if [[ -z "${IRSEC_REPO_DIR:-}" ]]; then
+    IRSEC_REPO_DIR=~/IRSeC-2025/
+fi
+source $IRSEC_REPO_DIR/linux/scripts/blue_team_configuration.sh
 
 scan_files() {
     log "Starting file system scan..."

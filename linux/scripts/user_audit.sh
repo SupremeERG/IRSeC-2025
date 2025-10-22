@@ -2,6 +2,12 @@
 # remove_unauthorized_users.sh
 # This script detects and removes unauthorized users on a Debian system.
 
+if [[ -z "${IRSEC_REPO_DIR:-}" ]]; then
+    IRSEC_REPO_DIR=~/IRSeC-2025/
+fi
+source $IRSEC_REPO_DIR/linux/scripts/blue_team_configuration.sh
+
+
 # Define known default Debian accounts
 DEFAULT_USERS=(
   root daemon bin sys sync games man lp mail news uucp proxy www-data

@@ -4,7 +4,12 @@
 # @author Ryan
 # Scans for suspicious user accounts
 
-source ./blue_team_config.sh
+if [[ -z "${IRSEC_REPO_DIR:-}" ]]; then
+    IRSEC_REPO_DIR=~/IRSeC-2025/
+fi
+source $IRSEC_REPO_DIR/linux/scripts/blue_team_configuration.sh
+
+
 
 scan_users() {
     log "Starting user account scan..."

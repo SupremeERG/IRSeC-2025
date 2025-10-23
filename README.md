@@ -14,7 +14,7 @@ These scripts are provided for educational and competitive purposes only. Do not
 - `agent_conf` contains the centralized agent configurations for the 'windows' and 'linux' agent groups. See [centralized agent documentation](https://documentation.wazuh.com/current/user-manual/reference/centralized-configuration.html) for more information on agent.conf file
 - `setup` directory contains files and scripts for initial Wazuh setup (probably not needed as Wazuh is already installed on the competition network.
 
-### Wazuh Configuration
+### Configuration
 - The Wazuh server (Dino Asteroid) will be primarily used for monitoring critical file/directory changes and account/machine logins (unless injects require more usage).
 - There will be two agent groups: 'windows' and 'linux'. See the [Grouping Agents](https://documentation.wazuh.com/current/user-manual/agent/agent-management/grouping-agents.html) page for more information on agent groups.
 - To setup the configurations, backups of original config files should be made and config files from this repository should be copied via SCP.
@@ -36,5 +36,5 @@ These scripts are provided for educational and competitive purposes only. Do not
 <br>
 <br>
 
-# Windows
+## Windows
 ...

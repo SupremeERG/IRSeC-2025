@@ -1,10 +1,7 @@
 #!/bin/bash
 
 # Improved version
-if [[ -z "${IRSEC_REPO_DIR:-}" ]]; then
-    IRSEC_REPO_DIR=$HOME/IRSeC-2025/
-fi
-source $IRSEC_REPO_DIR/linux/scripts/blue_team_configuration.sh
+source ./blue_team_configuration.sh
 
 
 improved_scan_processes() {
@@ -58,3 +55,6 @@ improved_scan_processes() {
     log "Process scan completed: ${#found_processes[@]} suspicious processes found"
     echo "${#found_processes[@]}"
 }
+
+
+improved_scan_processes

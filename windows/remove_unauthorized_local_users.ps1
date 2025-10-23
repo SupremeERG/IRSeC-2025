@@ -2,7 +2,17 @@
 # removes all users not in the authorized users list
 
 # Define authorized users
-$authorizedUsers = @("Administrator", "Guest", "krbtgt", "jians", "jsmith")
+$authorizedUsers = @(
+    "martymcFly",
+    "drwho", 
+    "arthurdent", 
+    "sambeckett", 
+    "loki",
+    "riphunter",
+    "theflash",
+    "tonystark",
+    "drstrange",
+    "bartallen")
 
 # Get all local users
 $localUsers = Get-LocalUser | Where-Object { $_.Name -notlike '*$' }

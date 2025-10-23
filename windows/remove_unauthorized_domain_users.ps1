@@ -7,8 +7,16 @@ Import-Module ActiveDirectory
 
 # Define your whitelist of allowed usernames (sAMAccountName)
 $allowedUsers = @(
-    "Administrator",
-    "bob"
+    "fathertime",
+    "chronos",
+    "aion",
+    "kairos",
+    "merlin",
+    "terminator",
+    "mrpeabody",
+    "jamescole",
+    "docbrown",
+    "professorparadox"
 )
 
 # Get all domain users

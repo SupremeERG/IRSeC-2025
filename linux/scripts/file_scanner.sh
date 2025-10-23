@@ -4,7 +4,7 @@
 # @author Ryan
 # Scans for suspicious files but does NOT remove them
 
-source ./blue_team_config.sh
+source ./blue_team_configuration.sh
 
 scan_files() {
     log "Starting file system scan..."

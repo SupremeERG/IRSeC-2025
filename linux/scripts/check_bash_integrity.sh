@@ -16,8 +16,7 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-# Log file
-LOG_FILE="bash_integrity_$(date +%Y%m%d_%H%M%S).log"
+source ./blue_team_configuration.sh
 
 log_message() {
     echo "$1" | tee -a "$LOG_FILE"

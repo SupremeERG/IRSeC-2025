@@ -1,0 +1,15 @@
+nodes:
+  # Wazuh indexer node
+  indexer:
+    - name: node-1
+      ip: "192.168.xxx.2" # ONLY CHANGE THIS VALUE
+
+  # Wazuh server node
+  server:
+    - name: wazuh-1
+      ip: "192.168.xxx.2" # ONLY CHANGE THIS VALUE
+
+  # Wazuh dashboard node
+  dashboard:
+    - name: dashboard
+      ip: "192.168.xxx.2" # ONLY CHANGE THIS VALUE

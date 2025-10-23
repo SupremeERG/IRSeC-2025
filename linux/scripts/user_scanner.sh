@@ -4,7 +4,9 @@
 # @author Ryan
 # Scans for suspicious user accounts
 
-source ./blue_team_config.sh
+source ./blue_team_configuration.sh
+
+
 
 scan_users() {
     log "Starting user account scan..."

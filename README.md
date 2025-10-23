@@ -3,8 +3,6 @@ IRSeC-2025 is a collection of security scripts and information used to defend a 
 **Disclaimer ⚠️**:
 These scripts are provided for educational and competitive purposes only. Do not use them on production systems or networks without proper authorization. The author is not responsible for any misuse or damages.
 
-
-<br>
 <br>
 
 # Directory

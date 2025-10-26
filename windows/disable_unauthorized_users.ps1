@@ -28,7 +28,7 @@ foreach ($user in $allUsers) {
     if (-not ($allowedUsers -contains $username)) {
         Write-Host "Removing user: $username"
         try {
-            Remove-ADUser -Identity $user -Confirm:$false
+            Disable-ADAccount -Identity $username
         } catch {
             Write-Warning "Failed to remove $username"
         }

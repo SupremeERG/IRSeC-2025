@@ -26,6 +26,8 @@ These scripts are provided for educational and competitive purposes only. Do not
 - run `CREATE USER 'example_user'@'%' IDENTIFIED BY 'password';` to create a user `example_user` with a password of `password` using the MySQL `caching_sha2_method`. Change `CREATE` TO `ALTER` to alter a user's password.
 - run `mysql -u <user> -p` to login to <user> with a password.
 - run `mysql_secure_installation` to secure MySQL with an interactive app by MySQL.
+- query `SELECT user, host, authentication_string, plugin FROM mysql.user;` to view MySQL users
+- query `SHOW GRANTS FOR '<user>'@'<host>';` to see user privileges
 
 ### Hardening
 - run `mysql_secure_installation` to secure MySQL with an interactive app by MySQL.

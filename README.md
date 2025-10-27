@@ -28,6 +28,7 @@ These scripts are provided for educational and competitive purposes only. Do not
 - run `mysql_secure_installation` to secure MySQL with an interactive app by MySQL.
 - query `SELECT user, host, authentication_string, plugin FROM mysql.user;` to view MySQL users
 - query `SHOW GRANTS FOR '<user>'@'<host>';` to see user privileges
+- query `DROP USER '<user>'@'%';` to remove a user
 
 ### Hardening
 - run `mysql_secure_installation` to secure MySQL with an interactive app by MySQL.

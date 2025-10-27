@@ -29,6 +29,7 @@ These scripts are provided for educational and competitive purposes only. Do not
 
 ### Hardening
 - run `mysql_secure_installation` to secure MySQL with an interactive app by MySQL.
+- add `skip-name-resolve               # Avoids DNS spoofing` to `/etc/mysql/mysql.conf.d/mysqld.conf` (note in edit explains purpose of this)
 
 <br>
 <br>

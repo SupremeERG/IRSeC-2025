@@ -40,7 +40,7 @@ These scripts are provided for educational and competitive purposes only. Do not
 
 ## Linux
 - The Linux folder contains all information and scripts pertaining to Linux machines.
-- `linux-cheatsheet.md` contains useful commands
+- `linux-cheatsheet.md` contains useful, commonly-needed information.
 ### Scripts
 - `blue_team_configuration.sh` initializes a bash source configuration and any important and consistently used values as variables for other scripts to use
 - `check_bash_integrity.sh` checks the integrity and vulnerability of the bash shell and any binaries

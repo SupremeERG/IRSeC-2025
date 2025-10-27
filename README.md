@@ -28,6 +28,8 @@ These scripts are provided for educational and competitive purposes only. Do not
 - run `mysql_secure_installation` to secure MySQL with an interactive app by MySQL.
 
 ### Hardening
+- run `mysql_secure_installation` to secure MySQL with an interactive app by MySQL.
+
 <br>
 <br>
 

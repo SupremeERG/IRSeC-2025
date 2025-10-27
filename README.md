@@ -20,6 +20,17 @@ These scripts are provided for educational and competitive purposes only. Do not
 <br>
 <br>
 
+## MySQL
+
+### Management
+- run `CREATE USER 'example_user'@'%' IDENTIFIED BY 'password';` to create a user `example_user` with a password of `password` using the MySQL `caching_sha2_method`. Change `CREATE` TO `ALTER` to alter a user's password.
+- run `mysql -u <user> -p` to login to <user> with a password.
+- ... sql secure install
+
+### Hardening
+<br>
+<br>
+
 ## Linux
 - The Linux folder contains all information and scripts pertaining to Linux machines.
 - `linux-cheatsheet.md` contains useful commands

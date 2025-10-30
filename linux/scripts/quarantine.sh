@@ -21,3 +21,8 @@ else
     echo "Failed to move $FILE. Make sure script was executed with access to $FILE."
     exit 1
 fi
+
+if chattr ae "$DEST"; then
+    echo "Disabled ability to rename, modify, or delete quarantined file using chattr."
+else
+    echo "Failed to add a and i attributes to the quarantined file."

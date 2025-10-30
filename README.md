@@ -46,6 +46,7 @@ These scripts are provided for educational and competitive purposes only. Do not
 - `check_bash_integrity.sh` checks the integrity and vulnerability of the bash shell and any binaries
 - `cron_audit.sh` shows each crontab file on the system as well as individual user crons
 - `file_scanner.sh` reports (to blue_team_configuration.sh report file) any suspicious files
+- `quarantine.sh` moves a file to /var/quarantine/<file> for further incident response investigation
 - `user_audit.sh` removes any non-default users (asks user to confirm before deleting)
 - `user_scanner.sh` reports (to blue_team_configuration.sh report file) any suspicious users
 

@@ -18,6 +18,6 @@ mkdir -p /var/quarantine
 if mv "$FILE" "$DEST"; then
     echo "Moved $FILE to $DEST"
 else
-    echo "Failed to move $FILE"
+    echo "Failed to move $FILE. Make sure script was executed with access to $FILE."
     exit 1
 fi

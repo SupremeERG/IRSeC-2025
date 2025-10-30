@@ -7,9 +7,9 @@
 
 `lsof` - list open files
 
-`ps auxww` - list processes
+`ps auxww` or `ps -U <user> -u <user> ux` - list processes
 
-`ss -tulpan` or `ss -tunap` or `netstat -tunap` - displays currently active TCP and UDP sockets, their process ID, and the local/remote IP addresses and ports of each
+`ss -tulpan` or `netstat -tulpan` - displays currently active TCP and UDP sockets, their process ID, and the local/remote IP addresses and ports of each
 
 `sudo su` - switches user to root user
 

@@ -7,9 +7,15 @@
 
 `lsof` - list open files
 
-`ss -tulpan` - displays currently active TCP and UDP sockets, their process ID, and the local/remote IP addresses and ports of each
+`ps auxww` - list processes
+
+`ss -tulpan` or `ss -tunap` or `netstat -tunap` - displays currently active TCP and UDP sockets, their process ID, and the local/remote IP addresses and ports of each
 
 `sudo su` - switches user to root user
+
+`systemctl list-unit-files --state=enabled`
+
+`systemctl list-units --type=service --state=running` - showing running services
 
 `tcpdump` - monitor real-time network traffic
 

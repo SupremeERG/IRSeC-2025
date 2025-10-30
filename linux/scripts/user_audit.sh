@@ -9,10 +9,8 @@ source ./blue_team_configuration.sh
 DEFAULT_USERS=(
   root daemon bin sys sync games man lp mail news uucp proxy www-data
   backup list irc gnats nobody systemd-network systemd-resolve
-  systemd-timesync messagebus syslog _apt fathertime chronos aion kairos
-  merlin terminator mrpeabody jamescole docbrown professorparadox drwho
-  martymcFly arthurdent sambeckett loki riphunter theflash tonystark drstrange
-  bartallen
+  systemd-timesync messagebus syslog _apt drwho marymcFly arthurdent sambeckett  loki riphunter theflash tonystark drstrange bartallen 
+
 )
 
 # Get current users

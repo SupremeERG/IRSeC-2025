@@ -13,7 +13,7 @@
 
 `sudo su` - switches user to root user
 
-`systemctl list-unit-files --state=enabled`
+`systemctl list-unit-files --state=enabled` - show enabled services
 
 `systemctl list-units --type=service --state=running` - showing running services
 

@@ -17,6 +17,8 @@
 
 `systemctl list-units --type=service --state=running` - showing running services
 
+`systemctl cat <unit file>` - show unit configuration (includes exec files, startup config, etc.)
+
 `tcpdump` - monitor real-time network traffic
 
 `umask` - changes default file permissions (must be added to .profile file to persist)

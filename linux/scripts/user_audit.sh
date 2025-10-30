@@ -1,6 +1,7 @@
 #!/bin/bash
 # remove_unauthorized_users.sh
-# This script detects and removes unauthorized users on a Debian system.
+# This script detects and removes unauthorized users on a Debian system,
+# logging details about each deleted account to unauthorized_users.csv.
 
 source ./blue_team_configuration.sh
 
@@ -54,13 +55,30 @@ echo "⚠️ Unauthorized users detected:"
 printf '%s\n' "${UNAUTHORIZED[@]}"
 echo
 
+# Ensure CSV log file exists with headers
+LOG_FILE="../logging/unauthorized_users.csv"
+if [[ ! -f "$LOG_FILE" ]]; then
+    echo "username,uid,gid,groups" > "$LOG_FILE"
+fi
+
 # Ask confirmation for each user individually
 for user in "${UNAUTHORIZED[@]}"; do
     read -p "Do you want to delete user '$user'? (y/N): " confirm
     if [[ "$confirm" =~ ^[Yy]$ ]]; then
         echo "Deleting user: $user"
+        
+        # Collect user info before deletion
+        uid=$(id -u "$user" 2>/dev/null)
+        gid=$(id -g "$user" 2>/dev/null)
+        groups=$(id -nG "$user" 2>/dev/null | tr ' ' ';')  # separate multiple groups with semicolon
+
+        # Append user info to CSV log
+        echo "$user,$uid,$gid,$groups" >> "$LOG_FILE"
+
+        # Delete user and home directory
         deluser --remove-home "$user"
-        echo "✅ User '$user' deleted."
+
+        echo "✅ User '$user' deleted and logged to $LOG_FILE."
     else
         echo "❌ Skipped user: $user"
     fi
@@ -68,4 +86,5 @@ for user in "${UNAUTHORIZED[@]}"; do
 done
 
 echo "✅ Process complete."
+echo "All deleted users have been recorded in: $LOG_FILE"
 

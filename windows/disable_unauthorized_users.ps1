@@ -7,8 +7,16 @@ Import-Module ActiveDirectory
 
 # Define your whitelist of allowed usernames (sAMAccountName)
 $allowedUsers = @(
-    "Administrator",
-    "bob"
+    "fathertime",
+    "chronos",
+    "aion",
+    "kairos",
+    "merlin",
+    "terminator",
+    "mrpeabody",
+    "jamescole",
+    "docbrown",
+    "professorparadox"
 )
 
 # Get all domain users
@@ -20,7 +28,7 @@ foreach ($user in $allUsers) {
     if (-not ($allowedUsers -contains $username)) {
         Write-Host "Removing user: $username"
         try {
-            Remove-ADUser -Identity $user -Confirm:$false
+            Disable-ADAccount -Identity $username
         } catch {
             Write-Warning "Failed to remove $username"
         }

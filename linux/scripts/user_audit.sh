@@ -4,15 +4,11 @@
 
 source ./blue_team_configuration.sh
 
-
 # Define known default Debian accounts
 DEFAULT_USERS=(
   root daemon bin sys sync games man lp mail news uucp proxy www-data
   backup list irc gnats nobody systemd-network systemd-resolve
-  systemd-timesync messagebus syslog _apt fathertime chronos aion kairos
-  merlin terminator mrpeabody jamescole docbrown professorparadox drwho
-  martymcFly arthurdent sambeckett loki riphunter theflash tonystark drstrange
-  bartallen
+  systemd-timesync messagebus syslog _apt drwho marymcFly arthurdent sambeckett loki riphunter theflash tonystark drstrange bartallen
 )
 
 # Get current users
@@ -56,15 +52,20 @@ fi
 
 echo "⚠️ Unauthorized users detected:"
 printf '%s\n' "${UNAUTHORIZED[@]}"
+echo
 
-# Ask for confirmation before deleting
-read -p "Do you want to delete these users? (y/N): " confirm
-if [[ "$confirm" =~ ^[Yy]$ ]]; then
-    for user in "${UNAUTHORIZED[@]}"; do
+# Ask confirmation for each user individually
+for user in "${UNAUTHORIZED[@]}"; do
+    read -p "Do you want to delete user '$user'? (y/N): " confirm
+    if [[ "$confirm" =~ ^[Yy]$ ]]; then
         echo "Deleting user: $user"
         deluser --remove-home "$user"
-    done
-    echo "✅ All unauthorized users have been removed."
-else
-    echo "❌ Aborted. No changes made."
-fi
+        echo "✅ User '$user' deleted."
+    else
+        echo "❌ Skipped user: $user"
+    fi
+    echo
+done
+
+echo "✅ Process complete."
+
